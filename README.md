@@ -85,36 +85,7 @@
 
 ## 🧠 How It Works
 
- 🧠 How It Works — Document Ingestion Pipeline
-
-## Option A — SVG (recommended, paste into README)
-
-```html
-<p align="center">
-  <img src="pipeline.svg" alt="Document Ingestion Pipeline" width="520"/>
-</p>
-```
-
----
-
-## Option B — Mermaid (native GitHub rendering, paste into README)
-
-```mermaid
-flowchart TD
-    A["📄 Document Upload\nPDF · DOCX · TXT"]
-    B["🔤 Text Extraction\nPyMuPDF · python-docx · UTF-8"]
-    C["✂️ Text Chunking\n500 tokens · 50 overlap"]
-    D["🔢 Generate Embeddings\nsentence-transformers · 384-dim"]
-    E["🗄️ Store in FAISS Index\nIndexFlatL2 · persisted to disk"]
-
-    A --> B --> C --> D --> E
-
-    style A fill:#21262d,stroke:#8b949e,color:#e6edf3
-    style B fill:#21262d,stroke:#388bfd,color:#e6edf3
-    style C fill:#21262d,stroke:#bc8cff,color:#e6edf3
-    style D fill:#21262d,stroke:#e3b341,color:#e6edf3
-    style E fill:#21262d,stroke:#3fb950,color:#e6edf3
-```
+ 
 
 
 ## 🛠️ Tech Stack
