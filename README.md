@@ -85,157 +85,97 @@
 
 ## 🧠 How It Works
 
-<h2 align="center">🧠 How It Works</h2>
-
-<p align="center">
-  <b>⚡ Intelligent RAG Pipeline</b>
-</p>
-
-<hr/>
-
-<!-- INGESTION -->
-<details open>
-  <summary><h3>📥 Ingestion Pipeline</h3></summary>
-
-  <br/>
-
-  <div align="center">
-
-  📄 Upload Document  
-  ⬇️  
-  🔤 Extract Text  
-  ⬇️  
-  ✂️ Chunk Data  
-  ⬇️  
-  🧠 Generate Embeddings  
-  ⬇️  
-  🗂️ Store in FAISS  
-
-  </div>
-
-  <br/>
-
-  <details>
-    <summary>📄 Upload Document</summary>
-    <p>Supports PDF, DOCX, TXT files for processing.</p>
-  </details>
-
-  <details>
-    <summary>🔤 Extract Text</summary>
-    <p>Converts documents into clean readable text.</p>
-  </details>
-
-  <details>
-    <summary>✂️ Chunk Data</summary>
-    <p>Splits text into smaller pieces for better retrieval.</p>
-  </details>
-
-  <details>
-    <summary>🧠 Generate Embeddings</summary>
-    <p>Transforms text into vector representations.</p>
-  </details>
-
-  <details>
-    <summary>🗂️ Store in FAISS</summary>
-    <p>Stores embeddings for fast similarity search.</p>
-  </details>
-
-</details>
-
-<hr/>
-
-<!-- QUERY -->
-<details open>
-  <summary><h3>🔍 Query Pipeline</h3></summary>
-
-  <br/>
-
-  <div align="center">
-
-  ❓ User Query  
-  ⬇️  
-  🧠 Embed Query  
-  ⬇️  
-  🔎 Semantic Search  
-  ⬇️  
-  📦 Retrieve Chunks  
-  ⬇️  
-  🤖 LLM + Context (RAG)  
-  ⬇️  
-  ✅ Final Answer  
-
-  </div>
-
-  <br/>
-
-  <details>
-    <summary>❓ User Query</summary>
-    <p>User inputs a question to the system.</p>
-  </details>
-
-  <details>
-    <summary>🧠 Embed Query</summary>
-    <p>Converts query into vector format.</p>
-  </details>
-
-  <details>
-    <summary>🔎 Semantic Search</summary>
-    <p>Finds the most relevant data using similarity.</p>
-  </details>
-
-  <details>
-    <summary>📦 Retrieve Chunks</summary>
-    <p>Fetches best matching content from database.</p>
-  </details>
-
-  <details>
-    <summary>🤖 LLM + Context (RAG)</summary>
-    <p>Combines retrieved data with LLM.</p>
-  </details>
-
-  <details>
-    <summary>✅ Final Answer</summary>
-    <p>Generates accurate and context-aware output.</p>
-  </details>
-
-</details>
-
-<hr/>
-
-<h3 align="center">🚀 Interactive Summary</h3>
+<h2 align="center">🧠 Query Pipeline</h2>
 
 <div align="center">
 
+<!-- CARD CONTAINER -->
 <table>
 <tr>
-<th>Step</th>
-<th>Action</th>
-</tr>
+<td>
 
-<tr>
-<td>📥</td>
-<td>Process Documents into Embeddings</td>
-</tr>
+<!-- CARD -->
+<div style="
+  border:1px solid #30363d;
+  border-radius:12px;
+  padding:20px;
+  background:#0d1117;
+  width:320px;
+">
 
-<tr>
-<td>🔍</td>
-<td>Search Relevant Context</td>
-</tr>
+<div align="center">
 
-<tr>
-<td>🤖</td>
-<td>Generate Answer using RAG</td>
-</tr>
+<h3>🔍 Query Flow</h3>
 
+<br/>
+
+<div style="padding:8px;">❓ <b>User Query</b></div>
+<div>⬇️</div>
+
+<div style="padding:8px;">🧠 <b>Embed Query</b></div>
+<div>⬇️</div>
+
+<div style="padding:8px;">🔎 <b>Semantic Search</b></div>
+<div>⬇️</div>
+
+<div style="padding:8px;">📦 <b>Retrieve Chunks</b></div>
+<div>⬇️</div>
+
+<div style="padding:8px;">🤖 <b>LLM + Context (RAG)</b></div>
+<div>⬇️</div>
+
+<div style="
+  padding:10px;
+  margin-top:6px;
+  border-radius:8px;
+  background:#238636;
+  color:white;
+">
+✅ <b>Final Answer</b>
+</div>
+
+</div>
+</div>
+
+</td>
+</tr>
 </table>
 
 </div>
 
-<hr/>
+---
 
-<p align="center">
-  🌟 Click • Explore • Understand
-</p>
+## ⚡ Explore Steps (Click)
+
+<details>
+<summary>❓ User Query</summary>
+User asks a question → input to system  
+</details>
+
+<details>
+<summary>🧠 Embed Query</summary>
+Query converted into vector form  
+</details>
+
+<details>
+<summary>🔎 Semantic Search</summary>
+Finds similar content using embeddings  
+</details>
+
+<details>
+<summary>📦 Retrieve Chunks</summary>
+Fetches most relevant data  
+</details>
+
+<details>
+<summary>🤖 LLM + Context (RAG)</summary>
+Combines retrieved data with LLM  
+</details>
+
+<details>
+<summary>✅ Final Answer</summary>
+Final accurate response generated  
+</details>
 
 ## 🛠️ Tech Stack
 
