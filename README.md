@@ -85,33 +85,110 @@
 
 ## 🧠 How It Works
 
-## 🏗️ System Architecture
+<h2 align="center">🧠 How It Works</h2>
+<p align="center">AI-powered RAG Pipeline</p>
 
-```mermaid
-flowchart LR
-    subgraph INGEST["  📥 INGEST  "]
-        A([UPLOAD\nDocument]):::purple --> B([EXTRACT\nText Extraction]):::neutral
-        B --> C([CHUNK\nChunking]):::neutral
-        C --> D([EMBED\nEmbeddings]):::neutral
-        D --> E([FAISS DB\nVector Index]):::green
-    end
+<br>
 
-    subgraph QUERY["  🔍 QUERY  "]
-        F([QUESTION\nUser Query]):::purple --> G([EMBED\nQuery Vector]):::neutral
-        G --> H([SEARCH\nSemantic Match]):::neutral
-        H --> I([RETRIEVE\nTop-K Chunks]):::neutral
-    end
+<!-- INGESTION -->
+<h3>📥 Ingestion Pipeline</h3>
 
-    E -. top-k .-> I
-    I --> J([LLM · RAG Pipeline\ncontext-aware generation]):::llm
-    G -. query .-> J
-    J --> K([ANSWER\nFinal Response]):::green
+<table>
+<tr>
 
-    classDef purple fill:#2d1b69,stroke:#7c6ff7,color:#c4b5fd,rx:8
-    classDef neutral fill:#0f172a,stroke:#334155,color:#94a3b8,rx:8
-    classDef green  fill:#064e3b,stroke:#10b981,color:#6ee7b7,rx:8
-    classDef llm    fill:#1e1b4b,stroke:#6366f1,color:#a5b4fc,rx:8
+<td align="center" style="border:1px solid #6f42c1; padding:12px 16px; border-radius:10px;">
+<b>01</b><br>Upload<br><sub>Document</sub>
+</td>
 
+<td align="center">→</td>
+
+<td align="center" style="border:1px solid #0ea5e9; padding:12px 16px; border-radius:10px;">
+<b>02</b><br>Extract<br><sub>Raw text</sub>
+</td>
+
+<td align="center">→</td>
+
+<td align="center" style="border:1px solid #06b6d4; padding:12px 16px; border-radius:10px;">
+<b>03</b><br>Chunk<br><sub>Segments</sub>
+</td>
+
+<td align="center">→</td>
+
+<td align="center" style="border:1px solid #14b8a6; padding:12px 16px; border-radius:10px;">
+<b>04</b><br>Embed<br><sub>Vectors</sub>
+</td>
+
+<td align="center">→</td>
+
+<td align="center" style="border:1px solid #22c55e; padding:12px 16px; border-radius:10px;">
+<b>05</b><br>Index<br><sub>FAISS DB</sub>
+</td>
+
+</tr>
+</table>
+
+<br>
+
+<!-- QUERY -->
+<h3>🔍 Query Pipeline</h3>
+
+<table>
+<tr>
+
+<td align="center" style="border:1px solid #6f42c1; padding:12px 16px; border-radius:10px;">
+<b>06</b><br>Query<br><sub>User input</sub>
+</td>
+
+<td align="center">→</td>
+
+<td align="center" style="border:1px solid #0ea5e9; padding:12px 16px; border-radius:10px;">
+<b>07</b><br>Embed<br><sub>Query vector</sub>
+</td>
+
+<td align="center">→</td>
+
+<td align="center" style="border:1px solid #06b6d4; padding:12px 16px; border-radius:10px;">
+<b>08</b><br>Search<br><sub>Top-K match</sub>
+</td>
+
+<td align="center">→</td>
+
+<td align="center" style="border:1px solid #f59e0b; padding:12px 16px; border-radius:10px;">
+<b>09</b><br>LLM + RAG<br><sub>Generate</sub>
+</td>
+
+<td align="center">→</td>
+
+<td align="center" style="border:1px solid #22c55e; padding:12px 16px; border-radius:10px;">
+<b>10</b><br>Answer<br><sub>Response</sub>
+</td>
+
+</tr>
+</table>
+
+<br>
+
+<!-- OUTPUT CARD -->
+<h3>✅ Output</h3>
+
+<div style="border:1px solid #30363d; border-radius:12px; padding:16px;">
+
+<b>Step 10 · Context-aware answer</b>
+
+<br><br>
+
+The LLM returns a grounded, context-aware response based strictly on retrieved
+document chunks — ensuring factual accuracy and eliminating hallucinations.
+
+<br><br>
+
+<sub>
+⚡ Streamlit Chat &nbsp;&nbsp;•&nbsp;&nbsp;
+📄 Grounded Response &nbsp;&nbsp;•&nbsp;&nbsp;
+🔗 Source Attribution
+</sub>
+
+</div> 
 
 ## 🛠️ Tech Stack
 
