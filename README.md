@@ -85,11 +85,32 @@
 
 ## 🧠 How It Works
 
-<p align="center">
-  <a href="https://your-username.github.io/your-repo/documind-pipeline.html">
-    <img src="https://img.shields.io/badge/View%20Pipeline-Interactive-blue?style=for-the-badge" />
-  </a>
-</p> 
+## 🏗️ System Architecture
+
+```mermaid
+flowchart LR
+    subgraph INGEST["  📥 INGEST  "]
+        A([UPLOAD\nDocument]):::purple --> B([EXTRACT\nText Extraction]):::neutral
+        B --> C([CHUNK\nChunking]):::neutral
+        C --> D([EMBED\nEmbeddings]):::neutral
+        D --> E([FAISS DB\nVector Index]):::green
+    end
+
+    subgraph QUERY["  🔍 QUERY  "]
+        F([QUESTION\nUser Query]):::purple --> G([EMBED\nQuery Vector]):::neutral
+        G --> H([SEARCH\nSemantic Match]):::neutral
+        H --> I([RETRIEVE\nTop-K Chunks]):::neutral
+    end
+
+    E -. top-k .-> I
+    I --> J([LLM · RAG Pipeline\ncontext-aware generation]):::llm
+    G -. query .-> J
+    J --> K([ANSWER\nFinal Response]):::green
+
+    classDef purple fill:#2d1b69,stroke:#7c6ff7,color:#c4b5fd,rx:8
+    classDef neutral fill:#0f172a,stroke:#334155,color:#94a3b8,rx:8
+    classDef green  fill:#064e3b,stroke:#10b981,color:#6ee7b7,rx:8
+    classDef llm    fill:#1e1b4b,stroke:#6366f1,color:#a5b4fc,rx:8
 
 
 ## 🛠️ Tech Stack
