@@ -1,9 +1,10 @@
 <div align="center">
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Space+Mono&size=40&duration=3000&pause=1000&color=818CF8&center=true&vCenter=true&width=800&lines=🧠+DocuMindAI;Intelligent+Document+AI;RAG-Powered+Q%26A+System" />
-</p>
+
+<img src="https://readme-typing-svg.demolab.com?font=Space+Mono&size=40&duration=3000&pause=1000&color=818CF8&center=true&vCenter=true&width=800&lines=%F0%9F%A7%A0+DocuMindAI;Intelligent+Document+AI;RAG-Powered+Q%26A+System" />
 
 <p><em>AI-Powered Document Q&A System using RAG</em></p>
+
+</div>
 
 <p>
   <img src="https://img.shields.io/badge/AI-RAG%20System-818cf8?style=for-the-badge&logo=openai&logoColor=white"/>
