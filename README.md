@@ -85,51 +85,157 @@
 
 ## 🧠 How It Works
 
+<h2 align="center">🧠 How It Works</h2>
+
+<p align="center">
+  <b>⚡ Intelligent RAG Pipeline</b>
+</p>
+
+<hr/>
+
+<!-- INGESTION -->
+<details open>
+  <summary><h3>📥 Ingestion Pipeline</h3></summary>
+
+  <br/>
+
+  <div align="center">
+
+  📄 Upload Document  
+  ⬇️  
+  🔤 Extract Text  
+  ⬇️  
+  ✂️ Chunk Data  
+  ⬇️  
+  🧠 Generate Embeddings  
+  ⬇️  
+  🗂️ Store in FAISS  
+
+  </div>
+
+  <br/>
+
+  <details>
+    <summary>📄 Upload Document</summary>
+    <p>Supports PDF, DOCX, TXT files for processing.</p>
+  </details>
+
+  <details>
+    <summary>🔤 Extract Text</summary>
+    <p>Converts documents into clean readable text.</p>
+  </details>
+
+  <details>
+    <summary>✂️ Chunk Data</summary>
+    <p>Splits text into smaller pieces for better retrieval.</p>
+  </details>
+
+  <details>
+    <summary>🧠 Generate Embeddings</summary>
+    <p>Transforms text into vector representations.</p>
+  </details>
+
+  <details>
+    <summary>🗂️ Store in FAISS</summary>
+    <p>Stores embeddings for fast similarity search.</p>
+  </details>
+
+</details>
+
+<hr/>
+
+<!-- QUERY -->
+<details open>
+  <summary><h3>🔍 Query Pipeline</h3></summary>
+
+  <br/>
+
+  <div align="center">
+
+  ❓ User Query  
+  ⬇️  
+  🧠 Embed Query  
+  ⬇️  
+  🔎 Semantic Search  
+  ⬇️  
+  📦 Retrieve Chunks  
+  ⬇️  
+  🤖 LLM + Context (RAG)  
+  ⬇️  
+  ✅ Final Answer  
+
+  </div>
+
+  <br/>
+
+  <details>
+    <summary>❓ User Query</summary>
+    <p>User inputs a question to the system.</p>
+  </details>
+
+  <details>
+    <summary>🧠 Embed Query</summary>
+    <p>Converts query into vector format.</p>
+  </details>
+
+  <details>
+    <summary>🔎 Semantic Search</summary>
+    <p>Finds the most relevant data using similarity.</p>
+  </details>
+
+  <details>
+    <summary>📦 Retrieve Chunks</summary>
+    <p>Fetches best matching content from database.</p>
+  </details>
+
+  <details>
+    <summary>🤖 LLM + Context (RAG)</summary>
+    <p>Combines retrieved data with LLM.</p>
+  </details>
+
+  <details>
+    <summary>✅ Final Answer</summary>
+    <p>Generates accurate and context-aware output.</p>
+  </details>
+
+</details>
+
+<hr/>
+
+<h3 align="center">🚀 Interactive Summary</h3>
+
 <div align="center">
 
-### ⚡ RAG Pipeline Flow
+<table>
+<tr>
+<th>Step</th>
+<th>Action</th>
+</tr>
+
+<tr>
+<td>📥</td>
+<td>Process Documents into Embeddings</td>
+</tr>
+
+<tr>
+<td>🔍</td>
+<td>Search Relevant Context</td>
+</tr>
+
+<tr>
+<td>🤖</td>
+<td>Generate Answer using RAG</td>
+</tr>
+
+</table>
 
 </div>
 
-```mermaid
-flowchart TD
-    A[📄 Upload Doc] --> B[🔤 Extract Text]
-    B --> C[✂️ Chunk Data]
-    C --> D[🧠 Embeddings]
-    D --> E[🗂️ Vector DB]
+<hr/>
 
-    E --> Q[❓ User Query]
-    Q --> W[🧠 Embed Query]
-    W --> S[🔎 Semantic Search]
-    S --> R[📦 Retrieve Context]
-    R --> L[🤖 LLM (RAG)]
-    L --> F[✅ Answer]
-
-## 🏗️ System Architecture
-
-```mermaid
-graph TD
-    A([📄 Upload Document]) --> B[🔤 Text Extraction]
-    B --> C[✂️ Text Chunking]
-    C --> D[🧮 Generate Embeddings]
-    D --> E[(🗄️ FAISS Vector DB)]
-
-    F([❓ User Question]) --> G[🧮 Query Embedding]
-    G --> H[🔍 Semantic Search]
-    E --> H
-    H --> I[📦 Retrieve Relevant Chunks]
-    I --> J{🤖 LLM — RAG}
-    G --> J
-    J --> K([✅ Context-Aware Answer])
-
-    style A fill:#1e1b4b,stroke:#818cf8,color:#c4b5fd
-    style F fill:#2e1065,stroke:#c084fc,color:#e9d5ff
-    style E fill:#064e3b,stroke:#34d399,color:#6ee7b7
-    style K fill:#064e3b,stroke:#34d399,color:#6ee7b7
-    style J fill:#1e1b4b,stroke:#6366f1,color:#a5b4fc
-```
-
----
+<p align="center">
+  🌟 Click • Explore • Understand
+</p>
 
 ## 🛠️ Tech Stack
 
