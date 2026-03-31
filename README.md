@@ -85,97 +85,304 @@
 
 ## 🧠 How It Works
 
-<h2 align="center">🧠 Query Pipeline</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Document Ingestion Pipeline</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d1117; color: #e6edf3; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; }
 
-<div align="center">
+  .container { max-width: 480px; width: 100%; }
+  .header { display: flex; align-items: center; gap: 10px; margin-bottom: 2rem; }
+  .header-icon { font-size: 22px; }
+  .header-title { font-size: 20px; font-weight: 600; }
+  .header-sub { font-size: 13px; color: #8b949e; margin-top: 2px; }
 
-<!-- CARD CONTAINER -->
-<table>
-<tr>
-<td>
+  .pipeline { display: flex; flex-direction: column; align-items: center; gap: 0; }
 
-<!-- CARD -->
-<div style="
-  border:1px solid #30363d;
-  border-radius:12px;
-  padding:20px;
-  background:#0d1117;
-  width:320px;
-">
+  /* connector arrow */
+  .connector { display: flex; flex-direction: column; align-items: center; height: 36px; position: relative; }
+  .connector .line { width: 2px; flex: 1; background: #30363d; transition: background .4s; }
+  .connector .arrow { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid #30363d; transition: border-top-color .4s; }
+  .connector.lit .line { background: var(--accent); }
+  .connector.lit .arrow { border-top-color: var(--accent); }
 
-<div align="center">
+  /* step card */
+  .step { width: 100%; border-radius: 12px; border: 1.5px solid #30363d; background: #161b22; cursor: pointer; transition: border-color .3s, background .3s, transform .15s, box-shadow .3s; position: relative; overflow: hidden; }
+  .step:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,.4); }
+  .step.active { border-color: var(--accent); background: var(--bg); box-shadow: 0 0 0 1px var(--accent-dim), 0 4px 24px var(--glow); }
+  .step.done { border-color: var(--accent); background: var(--bg-done); }
 
-<h3>🔍 Query Flow</h3>
+  .step-inner { padding: 1rem 1.25rem; display: flex; align-items: center; gap: 12px; }
+  .step-icon { font-size: 20px; flex-shrink: 0; }
+  .step-label { font-size: 15px; font-weight: 600; color: #e6edf3; }
+  .step-badge { margin-left: auto; font-size: 11px; padding: 2px 8px; border-radius: 20px; border: 1px solid; white-space: nowrap; opacity: 0; transition: opacity .3s; }
+  .step.active .step-badge, .step.done .step-badge { opacity: 1; }
+  .step.active .step-badge { background: var(--badge-bg); border-color: var(--accent); color: var(--accent); }
+  .step.done .step-badge { background: var(--badge-bg-done); border-color: var(--accent-dim); color: var(--accent); }
 
-<br/>
+  /* progress bar */
+  .progress-bar { position: absolute; bottom: 0; left: 0; height: 2px; width: 0%; background: var(--accent); transition: width var(--dur, .8s) linear; border-radius: 0 2px 2px 0; }
+  .step.active .progress-bar { width: 100%; }
+  .step.done .progress-bar { width: 100%; }
 
-<div style="padding:8px;">❓ <b>User Query</b></div>
-<div>⬇️</div>
+  /* detail panel */
+  .step-detail { max-height: 0; overflow: hidden; transition: max-height .35s ease, opacity .3s; opacity: 0; border-top: 0; }
+  .step-detail.open { max-height: 200px; opacity: 1; border-top: 1px solid #30363d; }
+  .step-detail-inner { padding: .75rem 1.25rem 1rem; }
+  .step-detail-inner p { font-size: 13px; color: #8b949e; line-height: 1.7; }
+  .detail-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .chip { font-size: 11px; padding: 2px 8px; border-radius: 6px; border: 1px solid; }
 
-<div style="padding:8px;">🧠 <b>Embed Query</b></div>
-<div>⬇️</div>
+  /* controls */
+  .controls { display: flex; gap: 8px; margin-top: 1.75rem; justify-content: center; }
+  .btn { padding: 7px 18px; font-size: 13px; border-radius: 8px; border: 1px solid #30363d; background: #21262d; color: #e6edf3; cursor: pointer; transition: background .15s; }
+  .btn:hover { background: #30363d; }
+  .btn:disabled { opacity: .4; cursor: default; }
+  .btn.primary { background: #1f6feb; border-color: #1f6feb; color: #fff; }
+  .btn.primary:hover { background: #388bfd; border-color: #388bfd; }
 
-<div style="padding:8px;">🔎 <b>Semantic Search</b></div>
-<div>⬇️</div>
+  /* status */
+  .status { text-align: center; font-size: 12px; color: #8b949e; margin-top: 1rem; min-height: 18px; transition: color .3s; }
+  .status.done { color: #3fb950; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <span class="header-icon">🧠</span>
+    <div>
+      <div class="header-title">Document Ingestion Pipeline</div>
+      <div class="header-sub">How your documents become a knowledge base</div>
+    </div>
+  </div>
 
-<div style="padding:8px;">📦 <b>Retrieve Chunks</b></div>
-<div>⬇️</div>
+  <div class="pipeline" id="pipeline"></div>
 
-<div style="padding:8px;">🤖 <b>LLM + Context (RAG)</b></div>
-<div>⬇️</div>
-
-<div style="
-  padding:10px;
-  margin-top:6px;
-  border-radius:8px;
-  background:#238636;
-  color:white;
-">
-✅ <b>Final Answer</b>
+  <div class="controls">
+    <button class="btn primary" id="run-btn" onclick="runPipeline()">▶ Run pipeline</button>
+    <button class="btn" id="reset-btn" onclick="reset()" disabled>↺ Reset</button>
+  </div>
+  <div class="status" id="status"></div>
 </div>
 
-</div>
-</div>
+<script>
+const steps = [
+  {
+    icon: "📄",
+    label: "Document Upload",
+    badge: "Input",
+    dur: 900,
+    detail: "Accepts PDF, DOCX, and TXT files. Raw binary is read and passed downstream for text extraction.",
+    chips: ["PDF", "DOCX", "TXT"],
+    chipClass: "chip-gray",
+    accent: "#8b949e",
+    accentDim: "rgba(139,148,158,.35)",
+    bg: "rgba(139,148,158,.07)",
+    bgDone: "rgba(139,148,158,.04)",
+    badgeBg: "rgba(139,148,158,.15)",
+    badgeBgDone: "rgba(139,148,158,.08)",
+    glow: "rgba(139,148,158,.08)"
+  },
+  {
+    icon: "🔤",
+    label: "Text Extraction",
+    badge: "Processing",
+    dur: 1100,
+    detail: "Raw text is extracted from each document format. PDFs use PyMuPDF; DOCX files use python-docx. Layout and encoding are normalised.",
+    chips: ["PyMuPDF", "python-docx", "UTF-8"],
+    chipClass: "chip-blue",
+    accent: "#58a6ff",
+    accentDim: "rgba(88,166,255,.35)",
+    bg: "rgba(56,139,253,.08)",
+    bgDone: "rgba(56,139,253,.04)",
+    badgeBg: "rgba(56,139,253,.15)",
+    badgeBgDone: "rgba(56,139,253,.08)",
+    glow: "rgba(56,139,253,.12)"
+  },
+  {
+    icon: "✂️",
+    label: "Text Chunking",
+    badge: "Splitting",
+    dur: 1000,
+    detail: "Text is split into overlapping chunks (default 500 tokens, 50-token overlap) so no semantic context is lost at boundaries.",
+    chips: ["500 tokens", "50 overlap", "RecursiveCharacterTextSplitter"],
+    chipClass: "chip-purple",
+    accent: "#bc8cff",
+    accentDim: "rgba(188,140,255,.35)",
+    bg: "rgba(188,140,255,.08)",
+    bgDone: "rgba(188,140,255,.04)",
+    badgeBg: "rgba(188,140,255,.15)",
+    badgeBgDone: "rgba(188,140,255,.08)",
+    glow: "rgba(188,140,255,.12)"
+  },
+  {
+    icon: "🔢",
+    label: "Generate Embeddings",
+    badge: "Encoding",
+    dur: 1300,
+    detail: "Each chunk is encoded into a dense vector using a sentence-transformer model. Semantic similarity is preserved in the embedding space.",
+    chips: ["sentence-transformers", "384-dim", "cosine similarity"],
+    chipClass: "chip-orange",
+    accent: "#e3b341",
+    accentDim: "rgba(227,179,65,.35)",
+    bg: "rgba(227,179,65,.08)",
+    bgDone: "rgba(227,179,65,.04)",
+    badgeBg: "rgba(227,179,65,.15)",
+    badgeBgDone: "rgba(227,179,65,.08)",
+    glow: "rgba(227,179,65,.10)"
+  },
+  {
+    icon: "🗄️",
+    label: "Store in FAISS Index",
+    badge: "Indexing",
+    dur: 900,
+    detail: "Vectors are added to a FAISS index for millisecond nearest-neighbour retrieval at query time. The index is persisted to disk.",
+    chips: ["FAISS", "IndexFlatL2", "Persisted"],
+    chipClass: "chip-green",
+    accent: "#3fb950",
+    accentDim: "rgba(63,185,80,.35)",
+    bg: "rgba(63,185,80,.08)",
+    bgDone: "rgba(63,185,80,.04)",
+    badgeBg: "rgba(63,185,80,.15)",
+    badgeBgDone: "rgba(63,185,80,.08)",
+    glow: "rgba(63,185,80,.10)"
+  }
+];
 
-</td>
-</tr>
-</table>
+const chipColors = {
+  "chip-gray":   { bg:"rgba(139,148,158,.1)",  border:"rgba(139,148,158,.3)",  color:"#8b949e" },
+  "chip-blue":   { bg:"rgba(56,139,253,.1)",   border:"rgba(56,139,253,.3)",   color:"#58a6ff" },
+  "chip-purple": { bg:"rgba(188,140,255,.1)",  border:"rgba(188,140,255,.3)",  color:"#bc8cff" },
+  "chip-orange": { bg:"rgba(227,179,65,.1)",   border:"rgba(227,179,65,.3)",   color:"#e3b341" },
+  "chip-green":  { bg:"rgba(63,185,80,.1)",    border:"rgba(63,185,80,.3)",    color:"#3fb950" }
+};
 
-</div>
+let openIdx = -1;
+let running = false;
 
----
+function cssVars(s) {
+  return `--accent:${s.accent};--accent-dim:${s.accentDim};--bg:${s.bg};--bg-done:${s.bgDone};--badge-bg:${s.badgeBg};--badge-bg-done:${s.badgeBgDone};--glow:${s.glow};--dur:${s.dur}ms;`;
+}
 
-## ⚡ Explore Steps (Click)
+function buildUI() {
+  const pl = document.getElementById("pipeline");
+  pl.innerHTML = "";
+  steps.forEach((s, i) => {
+    const cc = chipColors[s.chipClass];
+    const chipsHTML = s.chips.map(c =>
+      `<span class="chip" style="background:${cc.bg};border-color:${cc.border};color:${cc.color}">${c}</span>`
+    ).join("");
 
-<details>
-<summary>❓ User Query</summary>
-User asks a question → input to system  
-</details>
+    const card = document.createElement("div");
+    card.className = "step";
+    card.id = `step-${i}`;
+    card.style.cssText = cssVars(s);
+    card.innerHTML = `
+      <div class="step-inner" onclick="toggleDetail(${i})">
+        <span class="step-icon">${s.icon}</span>
+        <span class="step-label">${s.label}</span>
+        <span class="step-badge">${s.badge}</span>
+      </div>
+      <div class="step-detail" id="detail-${i}">
+        <div class="step-detail-inner">
+          <p>${s.detail}</p>
+          <div class="detail-chips">${chipsHTML}</div>
+        </div>
+      </div>
+      <div class="progress-bar" id="bar-${i}"></div>`;
+    pl.appendChild(card);
 
-<details>
-<summary>🧠 Embed Query</summary>
-Query converted into vector form  
-</details>
+    if (i < steps.length - 1) {
+      const conn = document.createElement("div");
+      conn.className = "connector";
+      conn.id = `conn-${i}`;
+      conn.style.setProperty("--accent", steps[i+1].accent);
+      conn.innerHTML = `<div class="line"></div><div class="arrow"></div>`;
+      pl.appendChild(conn);
+    }
+  });
+}
 
-<details>
-<summary>🔎 Semantic Search</summary>
-Finds similar content using embeddings  
-</details>
+function toggleDetail(i) {
+  if (running) return;
+  openIdx = openIdx === i ? -1 : i;
+  steps.forEach((_, j) => {
+    document.getElementById(`detail-${j}`).classList.toggle("open", j === openIdx);
+  });
+}
 
-<details>
-<summary>📦 Retrieve Chunks</summary>
-Fetches most relevant data  
-</details>
+async function runPipeline() {
+  if (running) return;
+  running = true;
+  reset(true);
+  document.getElementById("run-btn").disabled = true;
+  document.getElementById("reset-btn").disabled = true;
+  document.getElementById("status").textContent = "Starting…";
+  document.getElementById("status").className = "status";
 
-<details>
-<summary>🤖 LLM + Context (RAG)</summary>
-Combines retrieved data with LLM  
-</details>
+  for (let i = 0; i < steps.length; i++) {
+    const s = steps[i];
+    const card = document.getElementById(`step-${i}`);
+    const bar  = document.getElementById(`bar-${i}`);
 
-<details>
-<summary>✅ Final Answer</summary>
-Final accurate response generated  
-</details>
+    document.getElementById("status").textContent = `Processing: ${s.label}…`;
+
+    card.classList.add("active");
+    bar.style.transition = `width ${s.dur}ms linear`;
+    void card.offsetWidth;
+    bar.style.width = "100%";
+
+    await delay(s.dur + 100);
+
+    card.classList.remove("active");
+    card.classList.add("done");
+
+    const conn = document.getElementById(`conn-${i}`);
+    if (conn) conn.classList.add("lit");
+
+    await delay(200);
+  }
+
+  document.getElementById("status").textContent = "✓ Knowledge base ready — pipeline complete";
+  document.getElementById("status").className = "status done";
+  document.getElementById("run-btn").disabled = false;
+  document.getElementById("run-btn").textContent = "▶ Run again";
+  document.getElementById("reset-btn").disabled = false;
+  running = false;
+}
+
+function reset(silent) {
+  steps.forEach((_, i) => {
+    const card = document.getElementById(`step-${i}`);
+    if (!card) return;
+    card.classList.remove("active", "done");
+    const bar = document.getElementById(`bar-${i}`);
+    bar.style.transition = "none";
+    bar.style.width = "0%";
+    document.getElementById(`detail-${i}`).classList.remove("open");
+    const conn = document.getElementById(`conn-${i}`);
+    if (conn) conn.classList.remove("lit");
+  });
+  openIdx = -1;
+  if (!silent) {
+    document.getElementById("run-btn").disabled = false;
+    document.getElementById("run-btn").textContent = "▶ Run pipeline";
+    document.getElementById("reset-btn").disabled = true;
+    document.getElementById("status").textContent = "";
+    document.getElementById("status").className = "status";
+  }
+}
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+buildUI();
+</script>
+</body>
+</html>
 
 ## 🛠️ Tech Stack
 
