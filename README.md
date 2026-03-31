@@ -85,26 +85,96 @@
 
 ## 🧠 How It Works
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        INGESTION PIPELINE                           │
-│                                                                     │
-│  📄 Upload Doc  →  🔤 Extract Text  →  ✂️ Chunk Data               │
-│       ↓                                      ↓                      │
-│  🧮 Generate Embeddings      →      🗄️ Store in FAISS DB            │
-└─────────────────────────────────────────────────────────────────────┘
+import { useState } from "react";
 
-┌─────────────────────────────────────────────────────────────────────┐
-│                         QUERY PIPELINE                              │
-│                                                                     │
-│  ❓ User Query  →  🧮 Embed Query  →  🔍 Semantic Search           │
-│                                            ↓                        │
-│              📦 Retrieve Relevant Chunks ──┘                        │
-│                        ↓                                            │
-│            🤖 LLM + Context (RAG)  →  ✅ Final Answer              │
-└─────────────────────────────────────────────────────────────────────┘
-```
+const steps = {
+  ingestion: [
+    "Upload Document",
+    "Extract Text",
+    "Chunk Data",
+    "Generate Embeddings",
+    "Store in FAISS DB",
+  ],
+  query: [
+    "User Query",
+    "Embed Query",
+    "Semantic Search",
+    "Retrieve Chunks",
+    "LLM + Context (RAG)",
+    "Final Answer",
+  ],
+};
 
+export default function Pipeline() {
+  const [activeStep, setActiveStep] = useState(null);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-950 text-white p-8">
+      
+      <h1 className="text-3xl font-bold text-center mb-10">
+        🧠 How It Works
+      </h1>
+
+      <div className="grid md:grid-cols-2 gap-8">
+        
+        {/* INGESTION */}
+        <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-lg">
+          <h2 className="text-xl font-semibold mb-4 text-indigo-400">
+            📥 Ingestion Pipeline
+          </h2>
+
+          {steps.ingestion.map((step, index) => (
+            <div
+              key={index}
+              onMouseEnter={() => setActiveStep(step)}
+              onMouseLeave={() => setActiveStep(null)}
+              className={`p-3 mb-3 rounded-lg cursor-pointer transition-all duration-300
+              ${
+                activeStep === step
+                  ? "bg-indigo-500/20 border border-indigo-400 scale-105"
+                  : "bg-white/5 hover:bg-white/10"
+              }`}
+            >
+              {step}
+            </div>
+          ))}
+        </div>
+
+        {/* QUERY */}
+        <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-lg">
+          <h2 className="text-xl font-semibold mb-4 text-green-400">
+            🔍 Query Pipeline
+          </h2>
+
+          {steps.query.map((step, index) => (
+            <div
+              key={index}
+              onMouseEnter={() => setActiveStep(step)}
+              onMouseLeave={() => setActiveStep(null)}
+              className={`p-3 mb-3 rounded-lg cursor-pointer transition-all duration-300
+              ${
+                activeStep === step
+                  ? "bg-green-500/20 border border-green-400 scale-105"
+                  : "bg-white/5 hover:bg-white/10"
+              }`}
+            >
+              {step}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ACTIVE STEP DISPLAY */}
+      {activeStep && (
+        <div className="mt-10 text-center">
+          <div className="inline-block px-6 py-3 bg-white/10 rounded-xl border border-white/20 backdrop-blur">
+            ⚡ {activeStep}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 ---
 
 ## 🏗️ System Architecture
