@@ -1,6 +1,7 @@
 <div align="center">
-
-<img src="https://readme-typing-svg.demolab.com?font=Space+Mono&size=40&duration=3000&pause=1000&color=818CF8&center=true&vCenter=true&width=600&lines=🧠+DocuMindAI;Intelligent+Document+AI;RAG-Powered+Q%26A+System" alt="Typing SVG" />
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Space+Mono&size=40&duration=3000&pause=1000&color=818CF8&center=true&vCenter=true&width=800&lines=🧠+DocuMindAI;Intelligent+Document+AI;RAG-Powered+Q%26A+System" />
+</p>
 
 <p><em>AI-Powered Document Q&A System using RAG</em></p>
 
