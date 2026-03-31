@@ -85,7 +85,11 @@
 
 ## 🧠 How It Works
 
- 
+<p align="center">
+  <a href="https://your-username.github.io/your-repo/documind-pipeline.html">
+    <img src="https://img.shields.io/badge/View%20Pipeline-Interactive-blue?style=for-the-badge" />
+  </a>
+</p> 
 
 
 ## 🛠️ Tech Stack
