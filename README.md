@@ -118,7 +118,6 @@
     overflow-x: hidden;
   }
 
-  /* Animated grid background */
   body::before {
     content: '';
     position: fixed;
@@ -145,11 +144,7 @@
     padding: 60px 24px;
   }
 
-  /* ── Header ── */
-  .header {
-    text-align: center;
-    margin-bottom: 64px;
-  }
+  .header { text-align: center; margin-bottom: 64px; }
 
   .badge {
     display: inline-flex;
@@ -204,7 +199,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── Pipeline Section ── */
   .pipeline-block {
     margin-bottom: 48px;
     animation: fadeUp 0.7s ease both;
@@ -225,9 +219,7 @@
     margin-bottom: 20px;
   }
 
-  .section-icon {
-    font-size: 20px;
-  }
+  .section-icon { font-size: 20px; }
 
   .section-title {
     font-family: 'Syne', sans-serif;
@@ -244,11 +236,9 @@
     background: linear-gradient(90deg, var(--border), transparent);
   }
 
-  /* ── Steps Container ── */
   .steps {
     display: flex;
     align-items: stretch;
-    gap: 0;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 16px;
@@ -256,7 +246,6 @@
     position: relative;
   }
 
-  /* Glowing top border */
   .steps.ingestion::before {
     content: '';
     position: absolute;
@@ -282,7 +271,6 @@
     100% { background-position: 200% 0; }
   }
 
-  /* ── Individual Step ── */
   .step {
     flex: 1;
     display: flex;
@@ -297,15 +285,10 @@
   }
 
   .step:last-child { border-right: none; }
-
   .step:hover { background: rgba(255,255,255,0.03); }
 
-  .step.active.ingestion-step {
-    background: rgba(255,60,142,0.07);
-  }
-  .step.active.query-step {
-    background: rgba(0,229,255,0.07);
-  }
+  .step.active.ingestion-step { background: rgba(255,60,142,0.07); }
+  .step.active.query-step { background: rgba(0,229,255,0.07); }
 
   .step-num {
     font-size: 10px;
@@ -363,21 +346,6 @@
     text-transform: uppercase;
   }
 
-  /* Arrow between steps */
-  .arrow {
-    display: flex;
-    align-items: center;
-    padding: 0 2px;
-    color: var(--border);
-    font-size: 12px;
-    pointer-events: none;
-    transition: color 0.3s;
-    flex-shrink: 0;
-    align-self: center;
-    position: absolute;
-  }
-
-  /* ── Detail Panel ── */
   .detail-panel {
     margin-top: 12px;
     border-radius: 12px;
@@ -389,10 +357,7 @@
     opacity: 0;
   }
 
-  .detail-panel.open {
-    max-height: 240px;
-    opacity: 1;
-  }
+  .detail-panel.open { max-height: 240px; opacity: 1; }
 
   .detail-inner {
     padding: 20px 24px;
@@ -401,13 +366,7 @@
     align-items: flex-start;
   }
 
-  .detail-icon {
-    font-size: 32px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .detail-content {}
+  .detail-icon { font-size: 32px; flex-shrink: 0; margin-top: 2px; }
 
   .detail-title {
     font-family: 'Syne', sans-serif;
@@ -423,11 +382,7 @@
     margin-bottom: 12px;
   }
 
-  .detail-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
+  .detail-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
   .tag {
     font-size: 10px;
@@ -443,7 +398,6 @@
   .tag.green { color: var(--green); border-color: rgba(0,255,170,0.3); background: rgba(0,255,170,0.08); }
   .tag.purple { color: #a78bfa; border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.08); }
 
-  /* ── Flow Connector between pipelines ── */
   .connector {
     display: flex;
     flex-direction: column;
@@ -454,27 +408,14 @@
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    animation: fadeUp 0.7s 0.6s ease both;
-    opacity: 0;
-    animation-fill-mode: both;
   }
 
   .connector-line {
     width: 1px;
     height: 24px;
     background: linear-gradient(var(--pink), var(--cyan));
-    animation: lineGrow 0.5s 0.8s ease both;
-    transform-origin: top;
-    opacity: 0;
-    animation-fill-mode: both;
   }
 
-  @keyframes lineGrow {
-    from { opacity: 0; transform: scaleY(0); }
-    to { opacity: 1; transform: scaleY(1); }
-  }
-
-  /* ── Footer Note ── */
   .footer-note {
     margin-top: 48px;
     padding: 20px 24px;
@@ -484,8 +425,6 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    animation: fadeUp 0.7s 0.7s ease both;
-    animation-fill-mode: both;
   }
 
   .footer-icon { font-size: 24px; }
@@ -496,12 +435,8 @@
     line-height: 1.6;
   }
 
-  .footer-text strong {
-    color: var(--text);
-    font-weight: 600;
-  }
+  .footer-text strong { color: var(--text); font-weight: 600; }
 
-  /* Responsive */
   @media (max-width: 640px) {
     .steps { flex-wrap: wrap; }
     .step { min-width: calc(33% - 2px); border-bottom: 1px solid var(--border); }
@@ -512,55 +447,50 @@
 <body>
 <div class="wrapper">
 
-  <!-- Header -->
   <div class="header">
     <div class="badge">🧠 Documentation</div>
     <h1 class="title">How It <span class="grad">Works</span></h1>
     <p class="subtitle">AI-powered RAG Pipeline — click any step to explore</p>
   </div>
 
-  <!-- Ingestion Pipeline -->
   <div class="pipeline-block">
     <div class="section-label">
       <span class="section-icon">💾</span>
       <span class="section-title">Ingestion Pipeline</span>
       <div class="section-line"></div>
     </div>
-
     <div class="steps ingestion" id="ingestion-steps">
-      <div class="step ingestion-step" data-index="0" onclick="selectStep('ingestion', 0)">
+      <div class="step ingestion-step" onclick="selectStep('ingestion', 0)">
         <div class="step-num">01</div>
         <div class="step-icon-wrap">📄</div>
         <div class="step-name">Upload</div>
         <div class="step-sub">Document</div>
       </div>
-      <div class="step ingestion-step" data-index="1" onclick="selectStep('ingestion', 1)">
+      <div class="step ingestion-step" onclick="selectStep('ingestion', 1)">
         <div class="step-num">02</div>
         <div class="step-icon-wrap">🔍</div>
         <div class="step-name">Extract</div>
         <div class="step-sub">Raw text</div>
       </div>
-      <div class="step ingestion-step" data-index="2" onclick="selectStep('ingestion', 2)">
+      <div class="step ingestion-step" onclick="selectStep('ingestion', 2)">
         <div class="step-num">03</div>
         <div class="step-icon-wrap">✂️</div>
         <div class="step-name">Chunk</div>
         <div class="step-sub">Segments</div>
       </div>
-      <div class="step ingestion-step" data-index="3" onclick="selectStep('ingestion', 3)">
+      <div class="step ingestion-step" onclick="selectStep('ingestion', 3)">
         <div class="step-num">04</div>
         <div class="step-icon-wrap">🔢</div>
         <div class="step-name">Embed</div>
         <div class="step-sub">Vectors</div>
       </div>
-      <div class="step ingestion-step" data-index="4" onclick="selectStep('ingestion', 4)">
+      <div class="step ingestion-step" onclick="selectStep('ingestion', 4)">
         <div class="step-num">05</div>
         <div class="step-icon-wrap">🗄️</div>
         <div class="step-name">Index</div>
         <div class="step-sub">FAISS DB</div>
       </div>
     </div>
-
-    <!-- Detail Panel for Ingestion -->
     <div class="detail-panel" id="ingestion-detail">
       <div class="detail-inner">
         <div class="detail-icon" id="ingestion-detail-icon"></div>
@@ -573,55 +503,50 @@
     </div>
   </div>
 
-  <!-- Connector -->
   <div class="connector">
     <div class="connector-line"></div>
     <span>pipeline handoff</span>
     <div class="connector-line"></div>
   </div>
 
-  <!-- Query Pipeline -->
   <div class="pipeline-block">
     <div class="section-label">
       <span class="section-icon">🔎</span>
       <span class="section-title">Query Pipeline</span>
       <div class="section-line"></div>
     </div>
-
     <div class="steps query" id="query-steps">
-      <div class="step query-step" data-index="0" onclick="selectStep('query', 0)">
+      <div class="step query-step" onclick="selectStep('query', 0)">
         <div class="step-num">06</div>
         <div class="step-icon-wrap">💬</div>
         <div class="step-name">Query</div>
         <div class="step-sub">User input</div>
       </div>
-      <div class="step query-step" data-index="1" onclick="selectStep('query', 1)">
+      <div class="step query-step" onclick="selectStep('query', 1)">
         <div class="step-num">07</div>
         <div class="step-icon-wrap">🧮</div>
         <div class="step-name">Embed</div>
         <div class="step-sub">Query vector</div>
       </div>
-      <div class="step query-step" data-index="2" onclick="selectStep('query', 2)">
+      <div class="step query-step" onclick="selectStep('query', 2)">
         <div class="step-num">08</div>
         <div class="step-icon-wrap">🎯</div>
         <div class="step-name">Search</div>
         <div class="step-sub">Top-K match</div>
       </div>
-      <div class="step query-step" data-index="3" onclick="selectStep('query', 3)">
+      <div class="step query-step" onclick="selectStep('query', 3)">
         <div class="step-num">09</div>
         <div class="step-icon-wrap">🤖</div>
         <div class="step-name">LLM + RAG</div>
         <div class="step-sub">Generate</div>
       </div>
-      <div class="step query-step" data-index="4" onclick="selectStep('query', 4)">
+      <div class="step query-step" onclick="selectStep('query', 4)">
         <div class="step-num">10</div>
         <div class="step-icon-wrap">✅</div>
         <div class="step-name">Answer</div>
         <div class="step-sub">Response</div>
       </div>
     </div>
-
-    <!-- Detail Panel for Query -->
     <div class="detail-panel" id="query-detail">
       <div class="detail-inner">
         <div class="detail-icon" id="query-detail-icon"></div>
@@ -634,11 +559,12 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <div class="footer-note">
     <div class="footer-icon">⚡</div>
     <div class="footer-text">
-      <strong>Fully local & private.</strong> Documents never leave your environment. FAISS index is stored on disk, embeddings run via your configured model endpoint, and the LLM generates grounded answers using only retrieved context.
+      <strong>Fully local & private.</strong> Documents never leave your environment.
+      FAISS index is stored on disk, embeddings run via your configured model endpoint,
+      and the LLM generates grounded answers using only retrieved context.
     </div>
   </div>
 
@@ -648,106 +574,56 @@
 const data = {
   ingestion: [
     {
-      icon: "📄",
-      title: "01 — Upload Document",
-      desc: "Accepts PDF, DOCX, TXT, and Markdown files. Files are validated, deduplicated via hash check, and queued for the extraction step. Supports batch uploads and drag-and-drop.",
-      tags: [
-        { label: "PDF / DOCX / TXT", cls: "pink" },
-        { label: "SHA-256 dedup", cls: "purple" },
-        { label: "Batch support", cls: "cyan" }
-      ]
+      icon: "📄", title: "01 — Upload Document",
+      desc: "Accepts PDF, DOCX, TXT, and Markdown files. Files are validated, deduplicated via hash check, and queued for extraction. Supports batch uploads and drag-and-drop.",
+      tags: [{ label: "PDF / DOCX / TXT", cls: "pink" }, { label: "SHA-256 dedup", cls: "purple" }, { label: "Batch support", cls: "cyan" }]
     },
     {
-      icon: "🔍",
-      title: "02 — Extract Raw Text",
+      icon: "🔍", title: "02 — Extract Raw Text",
       desc: "Parses the document using PyMuPDF or python-docx depending on format. Handles multi-column layouts, tables, and embedded images. Outputs clean UTF-8 text with metadata.",
-      tags: [
-        { label: "PyMuPDF", cls: "pink" },
-        { label: "python-docx", cls: "cyan" },
-        { label: "UTF-8 clean", cls: "green" }
-      ]
+      tags: [{ label: "PyMuPDF", cls: "pink" }, { label: "python-docx", cls: "cyan" }, { label: "UTF-8 clean", cls: "green" }]
     },
     {
-      icon: "✂️",
-      title: "03 — Chunk into Segments",
+      icon: "✂️", title: "03 — Chunk into Segments",
       desc: "Splits text into overlapping chunks using a sliding window (default: 512 tokens, 64-token overlap). Preserves sentence boundaries for coherent retrieval context.",
-      tags: [
-        { label: "512 token chunks", cls: "pink" },
-        { label: "64-token overlap", cls: "purple" },
-        { label: "Sentence-aware", cls: "cyan" }
-      ]
+      tags: [{ label: "512 token chunks", cls: "pink" }, { label: "64-token overlap", cls: "purple" }, { label: "Sentence-aware", cls: "cyan" }]
     },
     {
-      icon: "🔢",
-      title: "04 — Embed Vectors",
+      icon: "🔢", title: "04 — Embed Vectors",
       desc: "Each chunk is passed through a sentence-transformers model (e.g. all-MiniLM-L6-v2) to produce dense float32 vectors of dimension 384. Batched for GPU efficiency.",
-      tags: [
-        { label: "all-MiniLM-L6-v2", cls: "cyan" },
-        { label: "384-dim float32", cls: "pink" },
-        { label: "GPU batched", cls: "green" }
-      ]
+      tags: [{ label: "all-MiniLM-L6-v2", cls: "cyan" }, { label: "384-dim float32", cls: "pink" }, { label: "GPU batched", cls: "green" }]
     },
     {
-      icon: "🗄️",
-      title: "05 — Index in FAISS DB",
-      desc: "Vectors are added to a FAISS IndexFlatIP (inner product) index. Metadata (source, chunk ID, page) is stored in a parallel SQLite table. Index is persisted to disk after every ingest.",
-      tags: [
-        { label: "FAISS IndexFlatIP", cls: "pink" },
-        { label: "SQLite metadata", cls: "purple" },
-        { label: "Disk-persistent", cls: "green" }
-      ]
+      icon: "🗄️", title: "05 — Index in FAISS DB",
+      desc: "Vectors are added to a FAISS IndexFlatIP index. Metadata (source, chunk ID, page) is stored in a parallel SQLite table. Index is persisted to disk after every ingest.",
+      tags: [{ label: "FAISS IndexFlatIP", cls: "pink" }, { label: "SQLite metadata", cls: "purple" }, { label: "Disk-persistent", cls: "green" }]
     }
   ],
   query: [
     {
-      icon: "💬",
-      title: "06 — Receive User Query",
+      icon: "💬", title: "06 — Receive User Query",
       desc: "The user's natural-language question is received via the API or UI. Input is sanitized, trimmed, and optionally pre-processed with a query rewriting step for better recall.",
-      tags: [
-        { label: "Natural language", cls: "cyan" },
-        { label: "Query rewriting", cls: "purple" },
-        { label: "REST / WebSocket", cls: "green" }
-      ]
+      tags: [{ label: "Natural language", cls: "cyan" }, { label: "Query rewriting", cls: "purple" }, { label: "REST / WebSocket", cls: "green" }]
     },
     {
-      icon: "🧮",
-      title: "07 — Embed Query Vector",
+      icon: "🧮", title: "07 — Embed Query Vector",
       desc: "The query string is embedded using the same sentence-transformers model used during ingestion, ensuring vector space alignment. Returns a single 384-dim float32 vector.",
-      tags: [
-        { label: "Same model as ingest", cls: "cyan" },
-        { label: "384-dim alignment", cls: "pink" },
-        { label: "< 5ms latency", cls: "green" }
-      ]
+      tags: [{ label: "Same model as ingest", cls: "cyan" }, { label: "384-dim alignment", cls: "pink" }, { label: "< 5ms latency", cls: "green" }]
     },
     {
-      icon: "🎯",
-      title: "08 — FAISS Top-K Search",
-      desc: "Performs an approximate nearest-neighbour search against the FAISS index using cosine similarity. Returns the top-K most relevant chunks (default K=5) with their similarity scores.",
-      tags: [
-        { label: "ANN search", cls: "cyan" },
-        { label: "K=5 default", cls: "pink" },
-        { label: "Cosine similarity", cls: "purple" }
-      ]
+      icon: "🎯", title: "08 — FAISS Top-K Search",
+      desc: "Performs an approximate nearest-neighbour search against the FAISS index using cosine similarity. Returns the top-K most relevant chunks (default K=5) with similarity scores.",
+      tags: [{ label: "ANN search", cls: "cyan" }, { label: "K=5 default", cls: "pink" }, { label: "Cosine similarity", cls: "purple" }]
     },
     {
-      icon: "🤖",
-      title: "09 — LLM + RAG Generate",
-      desc: "Retrieved chunks are injected into a system prompt as context. The LLM (Claude / GPT / local) is called with the context + user question. Output is constrained to grounded answers only.",
-      tags: [
-        { label: "Context injection", cls: "cyan" },
-        { label: "Grounded output", cls: "green" },
-        { label: "Claude / GPT / Local", cls: "pink" }
-      ]
+      icon: "🤖", title: "09 — LLM + RAG Generate",
+      desc: "Retrieved chunks are injected into a system prompt as context. The LLM is called with the context + user question. Output is constrained to grounded answers only.",
+      tags: [{ label: "Context injection", cls: "cyan" }, { label: "Grounded output", cls: "green" }, { label: "Claude / GPT / Local", cls: "pink" }]
     },
     {
-      icon: "✅",
-      title: "10 — Stream Final Answer",
-      desc: "The generated response is streamed token-by-token to the client. Source citations (document name, page, chunk ID) are appended. Response is logged for feedback and evaluation.",
-      tags: [
-        { label: "SSE streaming", cls: "cyan" },
-        { label: "Source citations", cls: "green" },
-        { label: "Feedback logging", cls: "purple" }
-      ]
+      icon: "✅", title: "10 — Stream Final Answer",
+      desc: "The generated response is streamed token-by-token to the client. Source citations (document name, page, chunk ID) are appended. Response is logged for feedback.",
+      tags: [{ label: "SSE streaming", cls: "cyan" }, { label: "Source citations", cls: "green" }, { label: "Feedback logging", cls: "purple" }]
     }
   ]
 };
@@ -757,31 +633,23 @@ let active = { ingestion: null, query: null };
 function selectStep(pipeline, index) {
   const steps = document.querySelectorAll(`#${pipeline}-steps .step`);
   const panel = document.getElementById(`${pipeline}-detail`);
-
   if (active[pipeline] === index) {
-    // Toggle off
     steps.forEach(s => s.classList.remove('active'));
     panel.classList.remove('open');
     active[pipeline] = null;
     return;
   }
-
   steps.forEach(s => s.classList.remove('active'));
   steps[index].classList.add('active');
   active[pipeline] = index;
-
   const d = data[pipeline][index];
   document.getElementById(`${pipeline}-detail-icon`).textContent = d.icon;
   document.getElementById(`${pipeline}-detail-title`).textContent = d.title;
   document.getElementById(`${pipeline}-detail-desc`).textContent = d.desc;
-  document.getElementById(`${pipeline}-detail-tags`).innerHTML = d.tags
-    .map(t => `<span class="tag ${t.cls}">${t.label}</span>`)
-    .join('');
-
-  // Color the panel top border
-  const isCyan = pipeline === 'query';
-  panel.style.borderColor = isCyan ? 'rgba(0,229,255,0.25)' : 'rgba(255,60,142,0.25)';
-
+  document.getElementById(`${pipeline}-detail-tags`).innerHTML =
+    d.tags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('');
+  panel.style.borderColor = pipeline === 'query'
+    ? 'rgba(0,229,255,0.25)' : 'rgba(255,60,142,0.25)';
   panel.classList.add('open');
 }
 </script>
