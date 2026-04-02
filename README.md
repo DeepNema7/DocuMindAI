@@ -85,7 +85,8 @@
 
 ## 🧠 How It Works
 
-<img width="1440" height="1652" alt="image" src="https://github.com/user-attachments/assets/65d380eb-5775-48cb-a261-386b409d1e44" />
+ <img width="1440" height="1434" alt="image" src="https://github.com/user-attachments/assets/5a013990-8c11-485a-b622-903f8d91d174" />
+
 
 
 ## 🛠️ Tech Stack
